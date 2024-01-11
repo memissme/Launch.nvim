@@ -8,6 +8,7 @@ vim.g.maplocalleader = " "
 keymap("n", "<C-Space>", "<cmd>WhichKey \\<space><cr>", opts)
 keymap("n", "<C-i>", "<C-i>", opts)
 
+
 -- Better window navigation
 keymap("n", "<m-h>", "<C-w>h", opts)
 keymap("n", "<m-j>", "<C-w>j", opts)
@@ -28,9 +29,22 @@ keymap("v", ">", ">gv", opts)
 
 keymap("x", "p", [["_dP]])
 
-vim.cmd [[:amenu 10.100 mousemenu.Goto\ Definition <cmd>lua vim.lsp.buf.definition()<CR>]]
-vim.cmd [[:amenu 10.110 mousemenu.References <cmd>lua vim.lsp.buf.references()<CR>]]
+vim.cmd [[:amenu 10.100 mousemenu.Goto\ Definition <cmd>lua vim.lsp.buf.definition()<cr>]]
+vim.cmd [[:amenu 10.110 mousemenu.References <cmd>lua vim.lsp.buf.references()<cr>]]
 -- vim.cmd [[:amenu 10.120 mousemenu.-sep- *]]
 
-vim.keymap.set("n", "<RightMouse>", "<cmd>:popup mousemenu<CR>")
-vim.keymap.set("n", "<Tab>", "<cmd>:popup mousemenu<CR>")
+-- vim.keymap.set("n", "<RightMouse>", "<cmd>:popup mousemenu<cr>")
+-- vim.keymap.set("n", "<Tab>", "<cmd>:popup mousemenu<cr>")
+
+-- move\
+  -- Normal-mode commands
+keymap("n", "J", "<cmd>MoveLine(1)<cr>", opts)
+keymap("n", "K", "<cmd>MoveLine(-1)<cr>", opts)
+keymap("n", "<S-Left>", "<cmd>MoveHChar(-1)<cr>", opts)
+keymap("n", "<S-Right>", "<cmd>MoveHChar(1)<cr>", opts)
+
+
+
+
+
+
