@@ -1,11 +1,11 @@
-local M = {
+  local M = {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
-  commit = "e49b1e90c1781ce372013de3fa93a91ea29fc34a",
+--  commit = "e49b1e90c1781ce372013de3fa93a91ea29fc34a",
   dependencies = {
     {
       "folke/neodev.nvim",
-      commit = "b094a663ccb71733543d8254b988e6bebdbdaca4",
+--      commit = "b094a663ccb71733543d8254b988e6bebdbdaca4",
     },
   },
 }
@@ -15,7 +15,7 @@ local function lsp_keymaps(bufnr)
   local keymap = vim.api.nvim_buf_set_keymap
   keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
   keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+  keymap(bufnr, "n", "Tab", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
   keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
   keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
   keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
@@ -60,6 +60,7 @@ function M.config()
     "yamlls",
     "marksman",
     "tailwindcss",
+    "clangd",
   }
 
   local default_diagnostic_config = {
@@ -110,6 +111,33 @@ function M.config()
     if server == "lua_ls" then
       require("neodev").setup {}
     end
+
+--    if server == "clangd" then
+--      require('lspconfig.configs').clangd = {
+--        default_config ={
+--            cmd = { "clangd", "--background-index" },
+--            filetypes = { "c", "cpp", "objc", "objcpp" },
+--            on_init = function(client, result)
+--                  if result.offsetEncoding then
+--                    client.offset_encoding = result.offsetEncoding
+--                  end
+--                end,
+--            root_dir = function(fname)
+--                  local filename = util.path.is_absolute(fname) and fname or util.path.join(vim.loop.cwd(), fname)
+--                  return root_pattern(filename) or util.path.dirname(filename)
+--                end,
+--        },
+--      }
+--     -- lspconfig[server].setup{
+--     --   cmd = {
+--     --     "clangd",
+--     --     "--header-insertion=never",
+--     --     "--query-driver=/opt/homebrew/opt/llvm/bin/clang",
+--     --     "--all-scopes-completion",
+--     --     "--completion-style=detailed",
+--     --     },
+--     --   }
+--     end
 
     lspconfig[server].setup(opts)
   end
