@@ -3,7 +3,7 @@ vim.opt.clipboard = "unnamedplus" -- allows neovim to access the system clipboar
 vim.opt.cmdheight = 1 -- more space in the neovim command line for displaying messages
 vim.opt.completeopt = { "menuone", "noselect" } -- mostly just for cmp
 vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
--- vim.opt.fileencoding = "utf-8" -- the encoding written to a file
+vim.opt.fileencodings = {"ucs-bom","utf-8","cp936","gb18030","big5","latin1"} -- the encoding written to a file
 vim.opt.hlsearch = true -- highlight all matches on previous search pattern
 vim.opt.ignorecase = true -- ignore case in search patterns
 vim.opt.mouse = "a" -- allow the mouse to be used in neovim
@@ -50,4 +50,4 @@ vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 
 vim.g.netrw_banner = 0
-vim.g.netrw_mouse = 2
+--set fileencodings=utf-8,gbk,gb2312,ucs-bom,utf-16,cp936
